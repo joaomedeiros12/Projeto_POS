@@ -113,8 +113,17 @@ Projeto_POS/
 
 ## 3. Etapas de Entrega (Cronograma Detalhado)
 
-* **Etapa 1:**
-* **Etapa 2:**
-* **Etapa 3:**
-* **Etapa 4:**
-* **Etapa 5:**
+* **Etapa 1:** 24/04 - Definição do layout de usabilidade  
+  Planejamento da estrutura visual e organização lógica da API, considerando a experiência de uso por parte do desenvolvedor (rotas intuitivas, organização dos dados e respostas claras).
+
+* **Etapa 2:** 07/05 - Definição dos requisitos  
+  Levantamento dos requisitos funcionais e não funcionais, definição dos módulos da aplicação (filmes, salas, sessões, etc.) e escopo das funcionalidades principais.
+
+* **Etapa 3:** 19/05 - Implementação das rotas 
+  Desenvolvimento inicial das rotas HTTP com FastAPI, incluindo os endpoints básicos para consulta e cadastro de dados (GET e POST).
+
+* **Etapa 4:** 28/05 - Implementação de funcionalidades como PUT e DELETE
+  Adição de funcionalidades de atualização e exclusão de dados (PUT e DELETE), com tratamento de erros e verificação de integridade.
+
+* **Etapa 5:** 01/06 - Estruturação da documentação para entrega  
+  Organização da documentação do projeto, incluindo estrutura de diretórios, descrição das funcionalidades, objetivos, requisitos e cronograma para apresentação final.
