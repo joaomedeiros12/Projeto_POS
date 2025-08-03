@@ -34,64 +34,61 @@ Além das funcionalidades básicas de CRUD, o sistema está preparado para ser e
 
 ### 2.1 Funcionalidades Principais
 
-- **Funcionalidade 01: Login de Administrador**  
-  Permitir que um administrador faça login com nome de usuário e senha. (RF001)
-
-- **Funcionalidade 03: Controle de Acesso**  
+- **Funcionalidade 01: Controle de Acesso**  
   Garantir que apenas administradores autenticados possam acessar as funcionalidades de gerenciamento. (RF003)
 
-- **Funcionalidade 04: Cadastrar Filme**  
+- **Funcionalidade 02: Cadastrar Filme**  
   Permitir o cadastro de novos filmes com as seguintes informações: título, gênero, duração, classificação indicativa, sinopse, diretor, elenco principal, ano de lançamento, URL do trailer (opcional), URL da imagem do filme e status. (RF004)
 
-- **Funcionalidade 05: Editar Filme**  
+- **Funcionalidade 03: Editar Filme**  
   Permitir a edição das informações de filmes já cadastrados. (RF005)
 
-- **Funcionalidade 06: Listar Filmes**  
+- **Funcionalidade 04: Listar Filmes**  
   Exibir uma lista de todos os filmes cadastrados com filtros por título, gênero e status, além de opções de ordenação. (RF006)
 
-- **Funcionalidade 07: Detalhes do Filme**  
+- **Funcionalidade 05: Detalhes do Filme**  
   Exibir todas as informações detalhadas de um filme selecionado. (RF007)
 
-- **Funcionalidade 08: Excluir Filme**  
+- **Funcionalidade 06: Excluir Filme**  
   Permitir a exclusão de filmes, alertando se estiverem associados a sessões futuras. (RF008)
 
-- **Funcionalidade 09: Cadastrar Sala**  
+- **Funcionalidade 07: Cadastrar Sala**  
   Permitir o cadastro de novas salas com nome/número, capacidade e descrição (opcional). (RF009)
 
-- **Funcionalidade 10: Editar Sala**  
+- **Funcionalidade 8: Editar Sala**  
   Permitir a edição das informações das salas cadastradas. (RF010)
 
-- **Funcionalidade 11: Listar Salas**  
+- **Funcionalidade 9: Listar Salas**  
   Exibir uma lista com todas as salas cadastradas. (RF011)
 
-- **Funcionalidade 12: Excluir Sala**  
+- **Funcionalidade 10: Excluir Sala**  
   Permitir a exclusão de salas, alertando se estiverem associadas a sessões futuras. (RF012)
 
-- **Funcionalidade 13: Cadastrar Sessão**  
+- **Funcionalidade 11: Cadastrar Sessão**  
   Permitir o cadastro de sessões informando o filme, sala, data, horário de início, preço, tipo de exibição e status da sessão. (RF013)
 
-- **Funcionalidade 14: Editar Sessão**  
+- **Funcionalidade 12: Editar Sessão**  
   Permitir a edição das informações de sessões já cadastradas. (RF014)
 
-- **Funcionalidade 15: Listar Sessões**  
+- **Funcionalidade 13: Listar Sessões**  
   Exibir uma lista com todas as sessões, com filtros por filme, sala, data e status. (RF015)
 
-- **Funcionalidade 16: Detalhes da Sessão**  
+- **Funcionalidade 14: Detalhes da Sessão**  
   Exibir todos os detalhes de uma sessão, incluindo o filme e a sala associados. (RF016)
 
-- **Funcionalidade 17: Excluir Sessão**  
+- **Funcionalidade 15: Excluir Sessão**  
   Permitir a exclusão de sessões cadastradas. (RF017)
 
-- **Funcionalidade 18: Relatório de Filmes por Status**  
+- **Funcionalidade 16: Relatório de Filmes por Status**  
   Gerar um relatório listando os filmes de acordo com seu status (Em cartaz, Em breve, Arquivado). (RF018)
 
-- **Funcionalidade 19: Relatório de Sessões Futuras**  
+- **Funcionalidade 17: Relatório de Sessões Futuras**  
   Gerar um relatório com sessões futuras, com filtros por data e filme. (RF019)
 
-- **Funcionalidade 20: Consultar Sessões por Filme**  
+- **Funcionalidade 18: Consultar Sessões por Filme**  
   Permitir a consulta de todas as sessões relacionadas a um filme específico. (RF020)
 
-- **Funcionalidade 21: Consultar Sessões por Sala**  
+- **Funcionalidade 19: Consultar Sessões por Sala**  
   Permitir a consulta de todas as sessões agendadas para uma sala específica. (RF021)
 
 
