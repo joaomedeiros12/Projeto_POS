@@ -34,13 +34,8 @@ Além das funcionalidades básicas de CRUD, o sistema está preparado para ser e
 
 ### 2.1 Funcionalidades Principais
 
-### 2.1 Funcionalidades Principais
-
 - **Funcionalidade 01: Login de Administrador**  
   Permitir que um administrador faça login com nome de usuário e senha. (RF001)
-
-- **Funcionalidade 02: Recuperação de Senha**  
-  Disponibilizar um mecanismo para recuperação de senha por parte do administrador. (RF002)
 
 - **Funcionalidade 03: Controle de Acesso**  
   Garantir que apenas administradores autenticados possam acessar as funcionalidades de gerenciamento. (RF003)
@@ -104,17 +99,65 @@ Além das funcionalidades básicas de CRUD, o sistema está preparado para ser e
 
 
 Projeto_POS/
+
 ├── main.py            # Ponto de entrada (inicialização)
+
 ├── api.py             # Lógica da API 
+
 ├── models.py          # Modelos com Pydantic
+
+├── terminal_api.py    # Aplicação requests
+
 
 
 ---
 
-## 3. Etapas de Entrega (Cronograma Detalhado)
 
-* **Etapa 1:**
-* **Etapa 2:**
-* **Etapa 3:**
-* **Etapa 4:**
-* **Etapa 5:**
+
+### 3. Etapas de Entrega
+
+**Etapa 1: Planejamento de Requisitos**  
+- Identificação dos requisitos básicos e avançados do sistema  
+- Definição das funcionalidades prioritárias para o desenvolvimento  
+
+**Etapa 2: Modelagem de Casos de Uso**  
+- Elaboração dos fluxos principais de interação  
+
+**Etapa 3: Estruturação do Modelo de Dados**  
+- Criação das entidades e suas propriedades essenciais  
+- Definição dos relacionamentos e regras de integridade  
+- Preparação para o armazenamento eficiente dos dados do sistema  
+
+**Etapa 4: Desenvolvimento da API**  
+- Implementação dos endpoints para gerenciar as funcionalidades:  
+  - Inclusão, atualização e remoção de dados    
+- Aplicação dos modelos Pydantic para validação de dados  
+- Gerenciamento de respostas e tratamento de erros para melhor usabilidade  
+- Organização do projeto em arquivos e módulos para facilitar manutenção e escalabilidade  
+
+**Etapa 5: Validação e Entrega**  
+- Realização de testes para validar o funcionamento correto da API   
+- Preparação do ambiente para disponibilização da aplicação  
+
+**Etapa 6: Implementação das rotas faltantes**  
+
+- Implementando rotas que faltaram
+- Criação do restante da aplicação
+
+**Etapa 7: Começo da Aplicação requests**
+
+- Ao substituir o docker, começamos a implementação da aplicação requests
+
+**Etapa 8: Correção de bugs**  
+
+- A aplicação requests apresentou bugs que foram corrigidos
+
+**Etapa 9: Validação da API**  
+
+- Verificando os últimos detalhes da api para a entrega
+
+**Etapa 10: Correção e entrega**  
+
+- A API foi corrigida
+- Bugs da aplicação requests foram sanados
+- API pronta para a nova entrega

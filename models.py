@@ -1,14 +1,20 @@
-from pydantic import BaseModel
-from datetime import date, timedelta
+from pydantic import BaseModel, HttpUrl
+from typing import List, Optional
+from datetime import date, time, timedelta
 
-class Administrador(BaseModel):
-    email:str
-    senha:str
-
-class Assento(BaseModel):
-    id:int
-    fila:str
-    coluna:int
+class Filme(BaseModel):
+    id: int
+    titulo: str
+    genero: str
+    duracao: str
+    classificacao: str
+    sinopse: str
+    diretor: str
+    elenco: List[str]
+    ano: date
+    url_trailer: Optional[HttpUrl] = None
+    url_imagem: Optional[HttpUrl] = None
+    status: str
 
 class Sala(BaseModel):
     id: int
@@ -16,19 +22,40 @@ class Sala(BaseModel):
     capacidade: int
 
 class Sessao(BaseModel):
-    id: int
-    sala: Sala
-    duracao: timedelta
+    id: Optional[int]
+    filme_id: int
+    sala_id: int
+    data: date
+    horario_inicio: time
+    duracao: timedelta  
+    preco: float
+    tipo_exibicao: str
+    status: str
 
-class Filme(BaseModel):
-    id:int
-    titulo:str
-    ano:date
-    sinopse:str
-    duracao:timedelta
 
-class Ingresso(BaseModel):
-    id:int
-    cpf_cli:int
-    valor:int
-    assento:Assento
+class FilmeCreate(BaseModel):
+    titulo: str
+    genero: str
+    duracao: str
+    classificacao: str
+    sinopse: str
+    diretor: str
+    elenco: List[str]
+    ano: date
+    url_trailer: Optional[HttpUrl] = None
+    url_imagem: Optional[HttpUrl] = None
+    status: str
+
+class SalaCreate(BaseModel):
+    nome: str
+    capacidade: int
+
+class SessaoCreate(BaseModel):
+    filme_id: int
+    sala_id: int
+    data: date
+    horario_inicio: time
+    duracao: str
+    preco: float
+    tipo_exibicao: str
+    status: str

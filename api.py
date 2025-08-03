@@ -1,110 +1,140 @@
 from fastapi import APIRouter, HTTPException
 from typing import List
-from models import Filme, Assento, Sala, Sessao
+from models import Filme, Sala, Sessao
+from datetime import date, time, timedelta
 
 router = APIRouter()
 
 filmes: List[Filme] = []
-assentos: List[Assento] = []
 salas: List[Sala] = []
 sessoes: List[Sessao] = []
 
+# Filmes
 @router.get("/filmes", response_model=List[Filme])
-def exibir_filmes():
+def listar_filmes():
     return filmes
 
-@router.get("/filmes/{id}", response_model=Filme)
-def detalhar_filme(id: int):
+@router.get("/filmes/{filme_id}", response_model=Filme)
+def obter_filme(filme_id: int):
     for filme in filmes:
-        if filme.id == id:
+        if filme.id == filme_id:
             return filme
-    raise HTTPException(404, "Filme não localizado ou não cadastrado.")
+    raise HTTPException(status_code=404, detail="Filme não encontrado")
 
 @router.post("/filmes", response_model=Filme)
 def criar_filme(filme: Filme):
-    novo_id = len(filmes) + 1
-    novo_filme = Filme(
-        id=novo_id,
-        titulo=filme.titulo,
-        duracao=filme.duracao,
-        ano=filme.ano,
-        sinopse=filme.sinopse
-    )
-    filmes.append(novo_filme)
-    return novo_filme
+    filme.id = max([f.id for f in filmes], default=0) + 1
+    filmes.append(filme)
+    return filme
 
-@router.put("/filmes/{id}", response_model=Filme)
-def atualizar_filme(id: int, filme: Filme):
-    for i, f in enumerate(filmes):
-        if f.id == id:
-            filme.id = id
-            filmes[i] = filme
-            return filme
-    raise HTTPException(status_code=404, detail="Filme não encontrado.")
-
-@router.delete("/filmes/{id}", response_model=Filme)
-def deletar_filme(id: int):
+@router.put("/filmes/{filme_id}", response_model=Filme)
+def atualizar_filme(filme_id: int, novo: Filme):
     for i, filme in enumerate(filmes):
-        if filme.id == id:
-            return filmes.pop(i)
-    raise HTTPException(status_code=404, detail="Filme não encontrado.")
+        if filme.id == filme_id:
+            filmes[i] = novo
+            return novo
+    raise HTTPException(status_code=404, detail="Filme não encontrado")
 
+@router.delete("/filmes/{filme_id}")
+def deletar_filme(filme_id: int):
+    for filme in filmes:
+        if filme.id == filme_id:
+            filmes.remove(filme)
+            return {"mensagem": "Filme deletado"}
+    raise HTTPException(status_code=404, detail="Filme não encontrado")
+
+
+# Salas
 @router.get("/salas", response_model=List[Sala])
-def visualizar_salas():
+def listar_salas():
     return salas
 
+@router.get("/salas/{sala_id}", response_model=Sala)
+def obter_sala(sala_id: int):
+    for sala in salas:
+        if sala.id == sala_id:
+            return sala
+    raise HTTPException(status_code=404, detail="Sala não encontrada")
+
 @router.post("/salas", response_model=Sala)
-def criar_sala(sala_input: Sala):
-    novo_id = (salas[-1].id + 1) if salas else 1
-    nova_sala = Sala(id=novo_id, nome=sala_input.nome, capacidade=sala_input.capacidade)
-    salas.append(nova_sala)
-    return nova_sala
+def criar_sala(sala: Sala):
+    sala.id = max([s.id for s in salas], default=0) + 1
+    salas.append(sala)
+    return sala
 
-@router.put("/salas/{id}", response_model=Sala)
-def atualizar_sala(id: int, sala_atualizada: Sala):
-    for i, s in enumerate(salas):
-        if s.id == id:
-            sala_atualizada.id = id
-            salas[i] = sala_atualizada
-            return sala_atualizada
-    raise HTTPException(status_code=404, detail="Sala não encontrada.")
+@router.put("/salas/{sala_id}", response_model=Sala)
+def atualizar_sala(sala_id: int, nova: Sala):
+    for i, sala in enumerate(salas):
+        if sala.id == sala_id:
+            salas[i] = nova
+            return nova
+    raise HTTPException(status_code=404, detail="Sala não encontrada")
 
-@router.delete("/salas/{id}", response_model=Sala)
-def deletar_sala(id: int):
-    for i, s in enumerate(salas):
-        if s.id == id:
-            return salas.pop(i)
-    raise HTTPException(status_code=404, detail="Sala não encontrada.")
+@router.delete("/salas/{sala_id}")
+def deletar_sala(sala_id: int):
+    for sala in salas:
+        if sala.id == sala_id:
+            salas.remove(sala)
+            return {"mensagem": "Sala deletada"}
+    raise HTTPException(status_code=404, detail="Sala não encontrada")
 
+
+# Sessões
 @router.get("/sessoes", response_model=List[Sessao])
 def listar_sessoes():
     return sessoes
 
-@router.get("/sessoes/{id}", response_model=Sessao)
-def visualizar_sessao(id: int):
+@router.get("/sessoes/{sessao_id}", response_model=Sessao)
+def obter_sessao(sessao_id: int):
     for sessao in sessoes:
-        if sessao.id == id:
+        if sessao.id == sessao_id:
             return sessao
-    raise HTTPException(status_code=404, detail="Sessão não encontrada.")
+    raise HTTPException(status_code=404, detail="Sessão não encontrada")
 
 @router.post("/sessoes", response_model=Sessao)
-def criar_sessao(sessao_input: Sessao):
-    novo_id = (sessoes[-1].id + 1) if sessoes else 1
-    nova_sessao = Sessao(id=novo_id, sala=sessao_input.sala, duracao=sessao_input.duracao)
-    sessoes.append(nova_sessao)
-    return nova_sessao
+def criar_sessao(sessao: Sessao):
+    sessao.id = max([s.id for s in sessoes], default=0) + 1  
+    sessoes.append(sessao)
+    return sessao
 
-@router.put("/sessoes/{id}", response_model=Sessao)
-def atualizar_sessao(id: int, sessao_input: Sessao):
+@router.put("/sessoes/{sessao_id}", response_model=Sessao)
+def atualizar_sessao(
+    sessao_id: int,
+    filme_id: int,
+    sala_id: int,
+    data: date,
+    horario_inicio: time,
+    duracao: timedelta,
+    preco: float,
+    tipo_exibicao: str,
+    status: str
+):
     for i, s in enumerate(sessoes):
-        if s.id == id:
-            sessoes[i] = Sessao(id=id, sala=sessao_input.sala, duracao=sessao_input.duracao)
-            return sessoes[i]
-    raise HTTPException(status_code=404, detail="Sessão não encontrada.")
+        if s.id == sessao_id:
+            filme = next((f for f in filmes if f.id == filme_id), None)
+            sala = next((s for s in salas if s.id == sala_id), None)
+            if not filme or not sala:
+                raise HTTPException(status_code=404, detail="Filme ou Sala não encontrados")
 
-@router.delete("/sessoes/{id}", response_model=Sessao)
-def deletar_sessao(id: int):
-    for i, s in enumerate(sessoes):
-        if s.id == id:
-            return sessoes.pop(i)
-    raise HTTPException(status_code=404, detail="Sessão não encontrada.")
+            nova_sessao = Sessao(
+                id=sessao_id,
+                filme=filme,
+                sala=sala,
+                data=data,
+                horario_inicio=horario_inicio,
+                duracao=duracao,
+                preco=preco,
+                tipo_exibicao=tipo_exibicao,
+                status=status
+            )
+            sessoes[i] = nova_sessao
+            return nova_sessao
+    raise HTTPException(status_code=404, detail="Sessão não encontrada")
+
+@router.delete("/sessoes/{sessao_id}")
+def deletar_sessao(sessao_id: int):
+    for sessao in sessoes:
+        if sessao.id == sessao_id:
+            sessoes.remove(sessao)
+            return {"mensagem": "Sessão deletada"}
+    raise HTTPException(status_code=404, detail="Sessão não encontrada")

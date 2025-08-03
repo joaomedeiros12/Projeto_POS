@@ -157,38 +157,6 @@ def buscar_sala_por_id(sala_id):
         print(f"Erro ao buscar sala: {resposta.status_code} - {resposta.text}")
         return None
 
-def atualizar_sessao():
-    id = int(input("ID da sessão que deseja atualizar: "))
-    filme_id = int(input("Novo ID do filme: "))
-    sala_id = int(input("Novo ID da sala: "))
-    data = input("Nova data (AAAA-MM-DD): ")
-    horario_inicio = input("Novo horário de início (HH:MM): ")
-    duracao = input("Nova duração (ex: 2:00:00): ")
-    preco = float(input("Novo preço: "))
-    tipo_exibicao = input("Novo tipo de exibição (ex: 3D, 2D): ")
-    status = input("Novo status (ativo/inativo): ")
-
-    sessao_atualizada = {
-        "id": id,
-        "filme_id": filme_id,
-        "sala_id": sala_id,
-        "data": data,
-        "horario_inicio": horario_inicio,
-        "duracao": duracao,
-        "preco": preco,
-        "tipo_exibicao": tipo_exibicao,
-        "status": status
-    }
-
-    resposta = requests.put(f"{BASE_URL}/sessoes/{id}", json=sessao_atualizada)
-    if resposta.status_code == 200:
-        print("Sessão atualizada com sucesso.")
-    else:
-        print("Erro ao atualizar sessão:", resposta.status_code)
-        print(resposta.text)
-
-
-
 
 def deletar_filme():
     try:
@@ -255,8 +223,6 @@ def menu():
         elif opcao == "10":
             criar_sessao()
         elif opcao == "11":
-            atualizar_sessao()
-        elif opcao == "12":
             deletar_sessao()
         elif opcao == "0":
             print("Encerrando o sistema.")
