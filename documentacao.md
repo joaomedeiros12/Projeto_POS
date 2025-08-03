@@ -1,4 +1,4 @@
-# Documentação do Projeto: Projeto XXX
+# Documentação do Projeto: Projeto Gerenciador de Cinema
 
 ## 1. Visão Geral
 
